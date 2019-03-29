@@ -1,0 +1,6 @@
+SQL STATEMENTS TO CREATE NEW TABLE CALLED 'CUSTOMERS'
+
+//Import accountnames from sales.sql
+INSERT INTO customers (customerID, countriesVisited, totalTransactions)
+SELECT DISTINCT accountName , COUNT(DISTINCT ipCountry) FROM sales GROUP BY accountName , COUNT(saleId) FROM sales GROUP BY accountName
+
