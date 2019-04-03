@@ -1,12 +1,12 @@
 Literature:
 
-Predicting Spending Behavior Using Socio-mobile Features
+Predicting Spending Behavior Using Socio-mobile Features 
 
 Applying decision trees for value-based customer relations management: Predicting airline customers' future values
 
 
 8 Features:
-1.	We gaan ervan uit dat iedereen op vakantie gaat. Dus als je uit verschillende landen het spel speelt, dan ben je een klant die gehecht is aan het spel, a �loyal� customer. De vraag is dan: Doe je dan ook meer aankopen?
+1.	We gaan ervan uit dat iedereen op vakantie gaat. Dus als je uit verschillende landen het spel speelt, dan ben je een klant die gehecht is aan het spel, a ‘loyal’ customer. De vraag is dan: Doe je dan ook meer aankopen?
 2.	Hoe langer iemand het spel speelt, hoe groter de kans dat iemand een aankoop doet?
 3.	Doet iemand die veel geld uitgeeft ook eerder een nieuwe aankoop?
 4.	Doet iemand die al veel aankopen heeft gedaan in het verleden ook sneller een nieuwe aankoop? (op maandbasis/gemiddelde. Soort treshold.)
@@ -17,9 +17,9 @@ Applying decision trees for value-based customer relations management: Predictin
 
 How to extract:
 1.	Number of countries per customer
-2.	Datum eerste aankoop � datum laatste aankoop
+2.	Datum eerste aankoop – datum laatste aankoop
 3.	Gespendeerde bedrag, tijd tot volgende aankoop
-4.	aantal transacties , tijd tot de volgnede aankoop
+4.	
 5.	Betaalmethode & tijd tot volgende aankoop/aantal aankopen
 6.	Land & tijd tot volgende aankoop/aantal aankopen (aankopen per klant)
 7.	Meet aantal transacties, groei per x aantal weken
@@ -29,3 +29,9 @@ Test, Training, Validation:
 20% validation, laatste x jaar
 Rest = 80%
 A ,b ,c ? val
+
+Queries in Pandas:
+d.groupby("customer")["date"].max() - d.groupby("customer")["date"].min()
+d.groupby(1)[8].nunique()
+d.groupby(1).size()
+
