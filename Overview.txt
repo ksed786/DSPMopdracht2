@@ -35,3 +35,88 @@ d.groupby("customer")["date"].max() - d.groupby("customer")["date"].min()
 d.groupby(1)[8].nunique()
 d.groupby(1).size()
 
+
+A key challenge with overfitting, and with machine learning in general, is that we can’t know how well our model will perform on new data until we actually test it.
+
+To address this, we can split our initial dataset into separate training and test subsets.
+
+This method can approximate of how well our model will perform on new data.
+
+If our model does much better on the training set than on the test set, then we’re likely overfitting.
+
+
+Another tip is to start with a very simple model to serve as a benchmark.
+
+Then, as you try more complex algorithms, you’ll have a reference point to see if the additional complexity is worth it.
+
+This is the Occam’s razor test. If two models have comparable performance, then you should usually pick the simpler one.
+
+How to Prevent Overfitting
+
+Detecting overfitting is useful, but it doesn’t solve the problem. Fortunately, you have several options to try.
+
+Here are a few of the most popular solutions for overfitting:
+
+Cross-validation
+
+Cross-validation is a powerful preventative measure against overfitting.
+
+The idea is clever: Use your initial training data to generate multiple mini train-test splits. Use these splits to tune your model.
+
+In standard k-fold cross-validation, we partition the data into k subsets, called folds. Then, we iteratively train the algorithm on k-1 folds while using the remaining fold as the test set (called the “holdout fold”).
+
+Train with more data
+
+It won’t work every time, but training with more data can help algorithms detect the signal better. In the earlier example of modeling height vs. age in children, it’s clear how sampling more schools will help your model.
+
+Of course, that’s not always the case. If we just add more noisy data, this technique won’t help. That’s why you should always ensure your data is clean and relevant.
+Remove features
+
+Some algorithms have built-in feature selection.
+
+For those that don’t, you can manually improve their generalizability by removing irrelevant input features.
+
+An interesting way to do so is to tell a story about how each feature fits into the model. This is like the data scientist's spin on software engineer’s rubber duck debugging technique, where they debug their code by explaining it, line-by-line, to a rubber duck.
+
+If anything doesn't make sense, or if it’s hard to justify certain features, this is a good way to identify them.
+In addition, there are several feature selection heuristics you can use for a good starting point.
+
+Early stopping
+
+When you’re training a learning algorithm iteratively, you can measure how well each iteration of the model performs.
+
+Up until a certain number of iterations, new iterations improve the model. After that point, however, the model’s ability to generalize can weaken as it begins to overfit the training data.
+
+Early stopping refers stopping the training process before the learner passes that point.
+
+Early stopping graphic
+Today, this technique is mostly used in deep learning while other techniques (e.g. regularization) are preferred for classical machine learning.
+
+Regularization
+
+Regularization refers to a broad range of techniques for artificially forcing your model to be simpler.
+
+The method will depend on the type of learner you’re using. For example, you could prune a decision tree, use dropout on a neural network, or add a penalty parameter to the cost function in regression.
+
+Oftentimes, the regularization method is a hyperparameter as well, which means it can be tuned through cross-validation.
+
+We have a more detailed discussion here on algorithms and regularization methods.
+
+Ensembling
+
+Ensembles are machine learning methods for combining predictions from multiple separate models. There are a few different methods for ensembling, but the two most common are:
+
+Bagging attempts to reduce the chance overfitting complex models.
+
+It trains a large number of "strong" learners in parallel.
+A strong learner is a model that's relatively unconstrained.
+Bagging then combines all the strong learners together in order to "smooth out" their predictions.
+Boosting attempts to improve the predictive flexibility of simple models.
+
+It trains a large number of "weak" learners in sequence.
+A weak learner is a constrained model (i.e. you could limit the max depth of each decision tree).
+Each one in the sequence focuses on learning from the mistakes of the one before it.
+Boosting then combines all the weak learners into a single strong learner.
+While bagging and boosting are both ensemble methods, they approach the problem from opposite directions.
+
+Bagging uses complex base models and tries to "smooth out" their predictions, while boosting uses simple base models and tries to "boost" their aggregate complexity.
